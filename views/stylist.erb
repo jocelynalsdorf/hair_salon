@@ -5,7 +5,7 @@
 
   <ul>
   <% @stylist.clients().each() do |client| %>
-  <li><%= client.client_description() %></li>
+  <li><a href="/clients/<%= client.stylist_id() %>"><%= client.client_description() %></li>
   <% end %>
   </ul>
 <% else %>
@@ -17,3 +17,9 @@
   <br>
   <a href="/stylists/<%= @stylist.id() %>/clients/new">Add New Client</a>
 </div>
+<br>
+<p><a href="/stylists/<%= @stylist.id() %>/edit"> Edit:  <%= @stylist.name() %></a></p>
+
+<br>
+
+<p><a href="/">Return to Main Page</a></p>

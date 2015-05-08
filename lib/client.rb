@@ -4,6 +4,8 @@ attr_reader(:client_description, :stylist_id)
   define_method(:initialize) do |attributes|
     @client_description = attributes.fetch(:client_description)
     @stylist_id = attributes.fetch(:stylist_id)
+    
+    
   end
 
   define_singleton_method(:all) do
@@ -17,16 +19,13 @@ attr_reader(:client_description, :stylist_id)
     clients
   end
 
-
   define_method(:==) do |another_client|
     self.client_description().==(another_client.client_description()).&(self.stylist_id().==(another_client.stylist_id()))
   end
 
   define_method(:save) do
     DB.exec("INSERT INTO clients (client_description, stylist_id) VALUES ('#{@client_description}', #{@stylist_id});")
+    
   end
-
-  define_method(:delete) do
-    DB.exec("DELETE FROM clients WHERE id = #{self.id()};")
-  end
+  
 end
