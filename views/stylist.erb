@@ -1,25 +1,26 @@
 <h1>Here are the clients for <%= @stylist.name() %></h1>
 
-
+<br>
 <% if @stylist.clients().any?() %>
 
-  <ul>
+<ul>
   <% @stylist.clients().each() do |client| %>
-  <li><a href="/clients/<%= client.stylist_id() %>"><%= client.client_description() %></li>
+  <li><%= client.client_description() %></li>
   <% end %>
   </ul>
 <% else %>
- <p>There are no clients yet.</p>
+<p>There are no clients yet.</p>
  <% end %>
 
 <div class="container">
-  <a href="/stylists">Back To All Stylists</a>
   <br>
-  <a href="/stylists/<%= @stylist.id() %>/clients/new">Add New Client</a>
+  <br>
+    <a href="/stylists">Back To All Stylists</a>
+  <br>
+    <a href="/stylists/<%= @stylist.id() %>/clients/new">Add New Client</a>
 </div>
 <br>
-<p><a href="/stylists/<%= @stylist.id() %>/edit"> Edit:  <%= @stylist.name() %></a></p>
-
 <br>
-
+<p><a href="/stylists/<%= @stylist.id() %>/edit">Edit this stylist </a></p>
+<br>
 <p><a href="/">Return to Main Page</a></p>
