@@ -36,7 +36,7 @@ describe('path to adding, deleting,viewing clients and stylists ', {:type => :fe
     expect(page).to have_content(test_client.client_description)
   end
 
-  it('allows user to edit or delete a stylist') do
+  it('allows user to get to the form to edit a particular stylist') do
     test_stylist = Stylist.new({:name => 'Judy', :id => nil})
     test_stylist.save()
     test_client = Client.new({:client_description => 'MrJones', :stylist_id => test_stylist.id()})
@@ -46,5 +46,34 @@ describe('path to adding, deleting,viewing clients and stylists ', {:type => :fe
     expect(page).to have_content('Judy')
   end
 
+  it('allows user to delete a stylist and their clients') do
+    test_stylist = Stylist.new({:name => 'Judy', :id => nil})
+    test_stylist.save()
+    test_client = Client.new({:client_description => 'MrJones', :stylist_id => test_stylist.id()})
+    test_client.save()
+    visit("/stylists/#{test_stylist.id()}")
+    click_link('Edit this stylist')
+    expect(page).to have_content('Judy')
+    click_button('Delete stylist')
+    expect(page). to have_content('Success!')
+  end
+
+  it('allows user to edit a stylist with a new name') do
+    test_stylist = Stylist.new({:name => 'Judy', :id => nil})
+    test_stylist.save()
+    test_client = Client.new({:client_description => 'MrJones', :stylist_id => test_stylist.id()})
+    test_client.save()
+    visit("/stylists/#{test_stylist.id()}")
+    click_link('Edit this stylist')
+    expect(page).to have_content('Judy')
+    fill_in('name', :with => 'bobby')
+    click_button('Update')
+    expect(page). to have_content('Success!')
+    click_link('Back')
+    click_link('View All Stylists')
+    expect(page). to have_content('bobby')
+
+
+  end
 
 end
