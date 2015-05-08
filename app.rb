@@ -28,12 +28,12 @@ post('/stylists') do
 end
 
 get('/stylists/:id') do
- @stylist = Stylist.find(params.fetch("id").to_i())
- erb(:stylist)
+  @stylist = Stylist.find(params.fetch("id").to_i())
+  erb(:stylist)
 end
 
 get('/stylists/:id/clients/new') do
-@stylist = Stylist.find(params.fetch("id").to_i())
+  @stylist = Stylist.find(params.fetch("id").to_i())
   erb(:client_form)
 end
 

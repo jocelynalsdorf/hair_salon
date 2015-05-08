@@ -1,16 +1,17 @@
 <h1>Here are the clients for <%= @stylist.name() %></h1>
 
 <br>
+
 <% if @stylist.clients().any?() %>
 
-<ul>
-  <% @stylist.clients().each() do |client| %>
-  <li><%= client.client_description() %></li>
-  <% end %>
+  <ul>
+    <% @stylist.clients().each() do |client| %>
+    <li><%= client.client_description() %></li>
+    <% end %>
   </ul>
 <% else %>
-<p>There are no clients yet.</p>
- <% end %>
+  <p>There are no clients yet.</p>
+<% end %>
 
 <div class="container">
   <br>
@@ -21,6 +22,6 @@
 </div>
 <br>
 <br>
-<p><a href="/stylists/<%= @stylist.id() %>/edit">Edit this stylist </a></p>
+<p><a href="/stylists/<%= @stylist.id() %>/edit">Edit this stylist</a></p>
 <br>
 <p><a href="/">Return to Main Page</a></p>

@@ -22,6 +22,7 @@ describe(Client) do
       expect(test_client.client_description()).to(eq("am"))
     end
   end
+
   describe("#==") do
     it("is the same client if it has the same description") do
       client1 = Client.new({:client_description => "jon", :stylist_id => 1})
@@ -29,6 +30,7 @@ describe(Client) do
       expect(client1).to(eq(client2))
     end
   end
+
   describe("#save") do
     it("adds a client to the database of saved clients") do
       test_client = Client.new({:client_description => "MrJ", :stylist_id => 1})

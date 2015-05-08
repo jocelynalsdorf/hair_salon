@@ -1,5 +1,5 @@
 class Stylist 
-attr_reader(:name, :id)
+  attr_reader(:name, :id)
 
   define_method(:initialize) do |attributes|
     @name = attributes.fetch(:name)
@@ -35,6 +35,7 @@ attr_reader(:name, :id)
     end
     found_stylist
   end
+
   define_method(:clients) do
     clients = DB.exec("SELECT * FROM clients WHERE stylist_id= #{self.id()}")
     list_clients = []
@@ -56,4 +57,5 @@ attr_reader(:name, :id)
     DB.exec("DELETE FROM stylists WHERE id = #{self.id()};")
     DB.exec("DELETE FROM clients WHERE stylist_id = #{self.id()};")
   end
+
 end

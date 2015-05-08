@@ -5,7 +5,7 @@ require('spec_helper')
 Capybara.app = Sinatra::Application
 set(:show_exceptions, false)
 
-describe('path to adding, deleting,viewing clients and stylists ', {:type => :feature}) do
+describe('path to adding, deleting, &  viewing clients and stylists', {:type => :feature}) do
   it('allows user to add new stylist from the home page') do
     visit('/')
     click_link('Add New Stylist')
@@ -58,7 +58,7 @@ describe('path to adding, deleting,viewing clients and stylists ', {:type => :fe
     expect(page). to have_content('Success!')
   end
 
-  it('allows user to edit a stylist with a new name') do
+  it('allows user to edit a stylist by assigning new name') do
     test_stylist = Stylist.new({:name => 'Judy', :id => nil})
     test_stylist.save()
     test_client = Client.new({:client_description => 'MrJones', :stylist_id => test_stylist.id()})
@@ -72,8 +72,6 @@ describe('path to adding, deleting,viewing clients and stylists ', {:type => :fe
     click_link('Back')
     click_link('View All Stylists')
     expect(page). to have_content('bobby')
-
-
   end
 
 end

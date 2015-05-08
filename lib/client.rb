@@ -1,11 +1,9 @@
 class Client
-attr_reader(:client_description, :stylist_id)
+  attr_reader(:client_description, :stylist_id)
 
   define_method(:initialize) do |attributes|
     @client_description = attributes.fetch(:client_description)
     @stylist_id = attributes.fetch(:stylist_id)
-    
-    
   end
 
   define_singleton_method(:all) do
@@ -24,8 +22,7 @@ attr_reader(:client_description, :stylist_id)
   end
 
   define_method(:save) do
-    DB.exec("INSERT INTO clients (client_description, stylist_id) VALUES ('#{@client_description}', #{@stylist_id});")
-    
+    DB.exec("INSERT INTO clients (client_description, stylist_id) VALUES ('#{@client_description}', #{@stylist_id});")   
   end
   
 end
