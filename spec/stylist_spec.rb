@@ -77,12 +77,13 @@ describe(Stylist) do
       stylist.delete()
       expect(Stylist.all()).to(eq([stylist2]))
     end
+    
     it("deletes a stylist's clients from the database") do
       stylist = Stylist.new({:name => "jen", :id => nil})
       stylist.save()
-      client = Client.new({:client_description => "missy", :stylist_id => stylist.id()})
+      client = Client.new({:client_description => "missy", :stylist_id => stylist.id(), :id => nil})
       client.save()
-      client2 = Client.new({:client_description => "Ray", :stylist_id => stylist.id()})
+      client2 = Client.new({:client_description => "Ray", :stylist_id => stylist.id(), :id => nil})
       client2.save()
       stylist.delete()
       expect(Client.all()).to(eq([]))

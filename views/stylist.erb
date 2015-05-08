@@ -3,7 +3,6 @@
 <br>
 
 <% if @stylist.clients().any?() %>
-
   <ul>
     <% @stylist.clients().each() do |client| %>
     <li><%= client.client_description() %></li>

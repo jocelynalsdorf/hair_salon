@@ -65,4 +65,20 @@ delete("/stylists/:id") do
   erb(:success)
 end
 
+get('/clients') do
+  @clients = Client.all()
+  erb(:clients)
+end
+
+get("/clients/:client_description") do
+  @client = Client.find(params.fetch("client_description"))
+  erb(:client_edit)
+end
+
+delete("/clients/:client_description") do
+  @client = Client.find(params.fetch("client_description"))
+  @client.delete()
+  @clients = Client.all()
+  erb(:success)
+end
 

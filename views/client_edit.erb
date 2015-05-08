@@ -1,0 +1,10 @@
+
+<h2>Remove <%= @client.client_description() %> from Salon</h2>
+<br>
+<br>
+<form action="/clients/<%= @client.client_description() %>" method="post">
+  <label for="deleted">To remove this client, click Delete Client  </label>
+  <input name="_method" type="hidden" value="delete" id="deleted">
+
+  <button type="submit">Delete Client</button>
+</form>

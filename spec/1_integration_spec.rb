@@ -26,6 +26,16 @@ describe('path to adding, deleting, &  viewing clients and stylists', {:type => 
     expect(page).to have_content('Sally')
   end
 
+  it('allows user to view all clients that have been added') do
+    test_stylist = Stylist.new({:name => 'Judy', :id => nil})
+    test_stylist.save()
+    test_client = Client.new({:client_description => 'MrJones', :stylist_id => test_stylist.id()})
+    test_client.save()
+    visit('/')
+    click_link('See all Clients')
+    expect(page).to have_content('MrJones')
+  end
+
   it('allows user to click on stylist name to view/add their clients') do
     test_stylist = Stylist.new({:name => 'Judy', :id => nil})
     test_stylist.save()
@@ -72,6 +82,15 @@ describe('path to adding, deleting, &  viewing clients and stylists', {:type => 
     click_link('Back')
     click_link('View All Stylists')
     expect(page). to have_content('bobby')
+  end
+  it('allows user to delete a client') do
+    test_client = Client.new({:client_description => 'Judy', :stylist_id => 1})
+    test_client.save()
+    test_stylist = Stylist.new({:name => 'MrJones', :id => nil})
+    test_stylist.save()
+    visit("/clients/#{test_client.client_description()}")
+    click_button('Delete Client')
+    expect(page). to have_content('Success!')
   end
 
 end

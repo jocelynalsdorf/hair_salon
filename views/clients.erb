@@ -1,0 +1,17 @@
+<h1>Clients</h1>
+
+
+<% if @clients.any?() %>
+  <h3>Click on a client to see their info:</h3>
+  <ul>
+    <% @clients.each do |client| %>
+    <li><a href='/clients/<%= client.client_description() %>'><%= client.client_description() %></a></li>
+    <% end %>
+  </ul>
+
+<% else %>
+  <p>There are no clients yet!</p>
+<% end %>
+
+
+

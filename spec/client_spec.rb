@@ -38,5 +38,14 @@ describe(Client) do
       expect(Client.all()).to(eq([test_client]))
     end
   end
+  describe(".find") do
+    it("returns a client item by its client_description") do
+      test_client = Client.new({:client_description => "Moose", :stylist_id => 1})
+      test_client.save()
+      test_client2 = Client.new({:client_description => "Mouse", :stylist_id => 2})
+      test_client2.save()
+      expect(Client.find(test_client2.client_description())).to(eq(test_client2))
+    end
+  end
 
 end

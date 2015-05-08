@@ -23,6 +23,21 @@ class Client
 
   define_method(:save) do
     DB.exec("INSERT INTO clients (client_description, stylist_id) VALUES ('#{@client_description}', #{@stylist_id});")   
-  end
+    
+  end 
   
+  define_singleton_method(:find) do |client_description|
+    found_client = nil
+    Client.all().each() do |client|
+      if client.client_description().==(client_description)
+        found_client = client
+      end
+    end
+    found_client
+  end
+
+  define_method(:delete) do
+    DB.exec("DELETE FROM clients WHERE client_description = '#{self.client_description()}';")
+  end
+
 end
