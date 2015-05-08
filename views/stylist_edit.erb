@@ -1,6 +1,6 @@
 <h1>Edit this Stylist</h1>
 
-<h3>Reassign clients to a new stylist or remove <%=@stylist.name() %> and his clients: </h3>
+<h3>Reassign clients to a new stylist or remove <%=@stylist.name() %> and their clients: </h3>
 <br>
 <form action="/stylists/<%= @stylist.id() %>" method="post">
   <input name="_method" type="hidden" value="patch">
