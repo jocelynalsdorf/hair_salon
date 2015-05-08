@@ -10,7 +10,7 @@ attr_reader(:client_description, :stylist_id)
     returned_clients = DB.exec("SELECT * FROM clients;")
     clients = []
     returned_clients.each() do |client|
-      description = client.fetch("description")
+      client_description = client.fetch("client_description")
       stylist_id = client.fetch("stylist_id").to_i() 
       clients.push(Client.new({:client_description => client_description, :stylist_id => stylist_id}))
     end
@@ -26,5 +26,7 @@ attr_reader(:client_description, :stylist_id)
     DB.exec("INSERT INTO clients (client_description, stylist_id) VALUES ('#{@client_description}', #{@stylist_id});")
   end
 
-
+  define_method(:delete) do
+    DB.exec("DELETE FROM clients WHERE id = #{self.id()};")
+  end
 end
