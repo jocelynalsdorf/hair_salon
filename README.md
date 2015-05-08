@@ -20,7 +20,7 @@ gem('pg')
 
 database client: postgres psql
 
-# psql
+psql
 ----------------------------------------------------------------------------------
 
 username=# CREATE DATABASE hair_salon;
@@ -32,9 +32,8 @@ hair_salon=# CREATE TABLE stylists (id serial PRIMARY KEY, name varchar);
 hair_salon=# CREATE TABLE clients (id serial PRIMARY KEY, client_description varchar, stylist_id int);
 
 hair_salon=# CREATE DATABASE hair_salon_test WITH TEMPLATE hair_salon;
+
 ------------------------------------------------------------------------------------
-
-
 
 Copying/license:
 The MIT License (MIT)
