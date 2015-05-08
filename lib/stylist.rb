@@ -26,6 +26,23 @@ attr_reader(:name, :id)
     self.name().==(another_stylist.name()).&(self.id().==(another_stylist.id()))
   end
 
-  
-
+  define_singleton_method(:find) do |id|
+    found_stylist = nil
+    Stylist.all().each() do |stylist|
+      if stylist.id().==(id)
+        found_stylist = stylist
+      end
+    end
+    found_stylist
+  end
+  define_method(:clients) do
+    clients = DB.exec("SELECT * FROM clients WHERE stylist_id= #{self.id()}")
+    list_clients = []
+    clients.each() do |client|
+      client_description = client.fetch("client_description")
+      stylist_id = client.fetch("stylist_id").to_i()
+      list_clients.push(Client.new({:client_description => client_description, :stylist_id => stylist_id}))
+    end
+    list_clients
+  end
 end
