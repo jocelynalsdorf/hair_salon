@@ -1,0 +1,14 @@
+<h1>Stylists</h1>
+
+
+<% if @stylists.any?() %>
+  <h3>Click on a list to see its tasks:</h3>
+<ul>
+  <% @stylists.each do |stylist| %>
+  <li><a href='/stylists/<%= stylist.id() %>'><%= stylist.name() %></a></li>
+  <% end %>
+</ul>
+
+<% else %>
+  <p>There are no stylists yet!</p>
+<% end %>
