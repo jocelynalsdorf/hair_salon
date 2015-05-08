@@ -45,6 +45,13 @@ attr_reader(:name, :id)
     end
     list_clients
   end
+
+  define_method(:update) do |attributes|
+    @name = attributes.fetch(:name)
+    @id = self.id()
+    DB.exec("UPDATE stylists SET name = '#{@name}' WHERE id = #{@id};")
+  end
+
   define_method(:delete) do
     DB.exec("DELETE FROM stylists WHERE id = #{self.id()};")
     DB.exec("DELETE FROM clients WHERE stylist_id = #{self.id()};")
